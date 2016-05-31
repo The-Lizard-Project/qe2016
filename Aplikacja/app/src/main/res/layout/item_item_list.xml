@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="pl.lizardproject.qe2016.itemlist.ItemViewModel"/>
+    </data>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp">
+        <TextView
+            android:id="@+id/text"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@{viewModel.item.name}"
+            app:layout_widthPercent="80%"/>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/text"
+            android:checked="@{viewModel.item.isChecked}"
+            app:layout_widthPercent="10%"
+            app:onCheckedChangeListener="@{viewModel.onCheckChangedCommand}"/>
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/checkbox"
+            android:onClick="@{viewModel.onDeleteCommand}"
+            android:scaleType="fitEnd"
+            android:src="@drawable/delete"
+            app:layout_widthPercent="10%"/>
+    </android.support.percent.PercentRelativeLayout>
+</layout>
