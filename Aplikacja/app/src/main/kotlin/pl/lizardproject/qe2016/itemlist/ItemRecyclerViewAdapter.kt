@@ -12,7 +12,7 @@ import pl.lizardproject.qe2016.R
 import pl.lizardproject.qe2016.databinding.ItemItemListBinding
 import pl.lizardproject.qe2016.model.Item
 
-class ItemRecyclerViewAdapter(val list: ObservableArrayList<Item>, context: Context) : RecyclerView.Adapter<ItemRecyclerViewAdapter.BindingViewHolder>() {
+class ItemRecyclerViewAdapter(private val list: ObservableArrayList<Item>, context: Context) : RecyclerView.Adapter<ItemRecyclerViewAdapter.BindingViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
     private val databaseFacade = (context.applicationContext as MyApplication).databaseFacade

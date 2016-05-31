@@ -6,7 +6,7 @@ import android.view.View
 import pl.lizardproject.database.qe2016.DatabaseFacade
 import pl.lizardproject.qe2016.model.Item
 
-class ItemListViewModel(val databaseFacade: DatabaseFacade) {
+class ItemListViewModel(private val databaseFacade: DatabaseFacade) {
 
     private var subscription = databaseFacade.loadItems().subscribe {
         values ->

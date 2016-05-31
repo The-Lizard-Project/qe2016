@@ -15,7 +15,7 @@ import pl.lizardproject.qe2016.model.Item
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class DatabaseFacade(val context: Context) {
+class DatabaseFacade(private val context: Context) {
 
     val storage by lazy {
         // override onUpgrade to handle migrating to a new version

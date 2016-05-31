@@ -7,12 +7,14 @@ import pl.lizardproject.database.qe2016.DatabaseFacade
 import pl.lizardproject.qe2016.model.Item
 
 
-class ItemViewModel(item: Item, val databaseFacade: DatabaseFacade) {
+class ItemViewModel(item: Item, private val databaseFacade: DatabaseFacade) {
 
     val item = ObservableField<Item>(item)
 
     fun onCheckChangedCommand(view: CompoundButton, isChecked: Boolean) {
-        databaseFacade.saveItem(item.get().checkItem(isChecked))
+        if (item.get().isChecked != isChecked) {
+            databaseFacade.saveItem(item.get().checkItem(isChecked))
+        }
     }
 
     fun onDeleteCommand(view: View) {
