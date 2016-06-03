@@ -35,6 +35,7 @@
             android:onClick="@{viewModel.onDeleteCommand}"
             android:scaleType="fitEnd"
             android:src="@drawable/delete"
+            android:id="@+id/deleteButton"
             app:layout_widthPercent="10%"/>
     </android.support.percent.PercentRelativeLayout>
 </layout>

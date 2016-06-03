@@ -28,6 +28,7 @@
                 android:enabled="@{!TextUtils.isEmpty(viewModel.newItemName)}"
                 android:onClick="@{viewModel.addItemCommand}"
                 android:text="@string/add"
+                android:id="@+id/addButton"
                 app:layout_widthPercent="20%"/>
         </android.support.percent.PercentRelativeLayout>
         <android.support.v7.widget.RecyclerView
@@ -35,6 +36,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
+            android:id="@+id/recyclerViewList"
             app:items="@{viewModel.items}"/>
     </LinearLayout>
 </layout>
