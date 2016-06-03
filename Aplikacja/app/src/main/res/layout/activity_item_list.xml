@@ -2,39 +2,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="android.text.TextUtils"/>
         <variable
             name="viewModel"
             type="pl.lizardproject.qe2016.itemlist.ItemListViewModel"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.percent.PercentRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin">
-            <EditText
-                android:id="@+id/newItemEditText"
-                android:layout_height="wrap_content"
-                android:text="@={viewModel.newItemName}"
-                app:layout_widthPercent="80%"/>
-            <Button
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/newItemEditText"
-                android:enabled="@{!TextUtils.isEmpty(viewModel.newItemName)}"
-                android:onClick="@{viewModel.addItemCommand}"
-                android:text="@string/add"
-                app:layout_widthPercent="20%"/>
-        </android.support.percent.PercentRelativeLayout>
+        android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding"
             app:items="@{viewModel.items}"/>
-    </LinearLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:onClick="@{viewModel::addItemCommand}"
+            android:src="@drawable/add"
+            app:useCompatPadding="true"/>
+    </RelativeLayout>
 </layout>

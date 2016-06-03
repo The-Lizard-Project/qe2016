@@ -9,9 +9,7 @@ import pl.lizardproject.qe2016.databinding.ActivityItemListBinding
 
 class ItemListActivity : AppCompatActivity() {
 
-    private val viewModel by lazy {
-        ItemListViewModel((application as MyApplication).databaseFacade)
-    }
+    private val viewModel by lazy { ItemListViewModel(this, (application as MyApplication).databaseFacade) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

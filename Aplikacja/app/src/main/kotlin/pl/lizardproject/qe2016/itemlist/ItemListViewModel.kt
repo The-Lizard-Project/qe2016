@@ -1,12 +1,14 @@
 package pl.lizardproject.qe2016.itemlist
 
+import android.app.Activity
+import android.content.Intent
 import android.databinding.ObservableArrayList
-import android.databinding.ObservableField
 import android.view.View
 import pl.lizardproject.database.qe2016.DatabaseFacade
+import pl.lizardproject.qe2016.edititem.EditItemActivity
 import pl.lizardproject.qe2016.model.Item
 
-class ItemListViewModel(private val databaseFacade: DatabaseFacade) {
+class ItemListViewModel(private val activity: Activity, private val databaseFacade: DatabaseFacade) {
 
     private var subscription = databaseFacade.loadItems().subscribe {
         values ->
@@ -15,11 +17,9 @@ class ItemListViewModel(private val databaseFacade: DatabaseFacade) {
     }
 
     val items = ObservableArrayList<Item>()
-    val newItemName = ObservableField<String>("")
 
     fun addItemCommand(view: View) {
-        databaseFacade.saveItem(Item(newItemName.get()))
-        newItemName.set("")
+        activity.startActivity(Intent(activity, EditItemActivity::class.java))
     }
 
     fun dispose() {
