@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/nameHint">
                 <EditText
+                    android:id="@+id/newItemEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={viewModel.newItemName}"/>
@@ -56,6 +57,7 @@
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
