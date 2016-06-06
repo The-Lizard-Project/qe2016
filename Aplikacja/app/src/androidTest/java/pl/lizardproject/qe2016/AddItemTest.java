@@ -6,6 +6,7 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.util.Log;
 import android.view.View;
 
 import org.hamcrest.Matcher;
@@ -13,6 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import pl.lizardproject.qe2016.helpers.ActivityHelper;
 import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -31,8 +33,10 @@ public class AddItemTest {
     @Test
     public void addItem() {
         for (int i = 0; i < 10; i++) {
+            Log.i("Activity: ", ActivityHelper.getActivityName());
             onView(withId(R.id.fabAdd)).perform(click());
             onView(withId(R.id.newItemEditText)).perform(typeText("1"), closeSoftKeyboard());
+            Log.i("Activity: ", ActivityHelper.getActivityName());
             onView(withId(R.id.fabSave)).perform(click());
         }
         for (int i = 0; i < 10; i++) {
