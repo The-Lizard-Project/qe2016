@@ -3,7 +3,7 @@ package pl.lizardproject.qe2016.database.converter
 import pl.lizardproject.qe2016.database.model.DbItemEntity
 import pl.lizardproject.qe2016.model.Item
 
-fun DbItemEntity.toAppModel() = Item(name, category, priority, isChecked, id)
+fun DbItemEntity.toAppModel() = Item(id, name, category, priority, isChecked)
 
 fun Item.toDbModel(dbItem: DbItemEntity? = null): DbItemEntity {
     val dbModel = dbItem ?: DbItemEntity()

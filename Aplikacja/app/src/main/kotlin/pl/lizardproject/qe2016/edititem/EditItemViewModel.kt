@@ -8,7 +8,14 @@ import pl.lizardproject.qe2016.model.Category
 import pl.lizardproject.qe2016.model.Item
 import pl.lizardproject.qe2016.model.Priority
 
-class EditItemViewModel(private val activity: Activity, private val databaseFacade: DatabaseFacade) {
+class EditItemViewModel(val itemId: Int?, private val activity: Activity, private val databaseFacade: DatabaseFacade) {
+
+    private var subscription = databaseFacade.loadItem(itemId)
+            .subscribe({
+                newItemName.set(it.name)
+                newItemCategoryPosition.set(it.category.ordinal)
+                newItemPriorityPosition.set(it.priority.ordinal)
+            }, { /*new item*/ })
 
     val newItemName = ObservableField("")
     val newItemCategoryPosition = ObservableField(0)
@@ -18,7 +25,11 @@ class EditItemViewModel(private val activity: Activity, private val databaseFaca
     val priorities = Priority.values().map { it.toString().toLowerCase() }
 
     fun saveItemCommand(view: View) {
-        databaseFacade.saveItem(Item(newItemName.get(), Category.values()[newItemCategoryPosition.get()], Priority.values()[newItemPriorityPosition.get()]))
+        databaseFacade.saveItem(Item(itemId, newItemName.get(), Category.values()[newItemCategoryPosition.get()], Priority.values()[newItemPriorityPosition.get()]))
         activity.finish()
+    }
+
+    fun dispose() {
+        subscription.unsubscribe()
     }
 }

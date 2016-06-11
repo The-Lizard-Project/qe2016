@@ -11,6 +11,7 @@
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{viewModel::onClickCommand}"
         android:paddingBottom="6dp"
         android:paddingTop="6dp">
         <TextView
@@ -49,13 +50,13 @@
             app:onCheckedChangeListener="@{viewModel::onCheckChangedCommand}"/>
 
         <ImageView
+            android:id="@+id/deleteButton"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/checkbox"
-            android:onClick="@{viewModel::onDeleteCommand}"
+            android:onClick="@{viewModel::onDeleteClickCommand}"
             android:scaleType="fitEnd"
             android:src="@drawable/delete"
-            android:id="@+id/deleteButton"
             app:layout_widthPercent="10%"/>
     </android.support.percent.PercentRelativeLayout>
 </layout>

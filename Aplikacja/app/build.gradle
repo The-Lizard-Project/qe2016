@@ -49,6 +49,11 @@ dependencies {
     kapt 'io.requery:requery-processor:1.0.0-beta20'
     compile 'io.requery:sqlite-android:3.13.0-2'
 
+    compile 'com.f2prateek.dart:dart:2.0.0'
+    kapt 'com.f2prateek.dart:dart-processor:2.0.0'
+    compile 'com.f2prateek.dart:henson:2.0.0'
+    kapt 'com.f2prateek.dart:henson-processor:2.0.0'
+
     //Espresso
     androidTestCompile 'com.android.support:support-annotations:23.4.0'
     androidTestCompile 'com.android.support.test:runner:0.5'

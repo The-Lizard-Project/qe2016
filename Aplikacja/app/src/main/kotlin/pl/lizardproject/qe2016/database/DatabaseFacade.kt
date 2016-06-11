@@ -60,4 +60,6 @@ class DatabaseFacade(private val context: Context) {
                     }
                 }
     }
+
+    fun loadItem(itemId: Int?) = loadItems().map { it.first { it.id == itemId } }
 }
