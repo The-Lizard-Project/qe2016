@@ -9,7 +9,7 @@
             type="pl.lizardproject.qe2016.edititem.EditItemViewModel"/>
     </data>
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -25,7 +25,7 @@
                     android:id="@+id/newItemEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.newItemName}"/>
+                    android:text="@={viewModel.newItemName}" />
             </android.support.design.widget.TextInputLayout>
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                 android:paddingTop="@dimen/activity_padding"
                 android:text="@string/categoryTitle"
                 android:textColor="@color/colorAccent"
-                android:textSize="11sp"/>
+                android:textSize="11sp" />
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
@@ -60,11 +60,11 @@
             android:id="@+id/fabSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
             android:enabled="@{!TextUtils.isEmpty(viewModel.newItemName)}"
             android:onClick="@{viewModel::saveItemCommand}"
             android:src="@drawable/accept"
             app:useCompatPadding="true"/>
-    </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>
