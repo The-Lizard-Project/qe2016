@@ -15,7 +15,7 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class AddItemTest {
+public class AddAndRemoveItemsTest {
     private ItemListPage itemListPage;
 
     @Rule
@@ -27,7 +27,7 @@ public class AddItemTest {
     }
 
     @Test
-    public void addItem() {
+    public void addItems() {
         AddItemPage addItemPage;
 
         for (int i = 0; i < 10; i++) {

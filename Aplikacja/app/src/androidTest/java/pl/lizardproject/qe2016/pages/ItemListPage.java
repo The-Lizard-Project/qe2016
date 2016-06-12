@@ -8,7 +8,6 @@ import android.view.View;
 
 import org.hamcrest.Matcher;
 
-import pl.lizardproject.qe2016.AddItemTest;
 import pl.lizardproject.qe2016.R;
 import pl.lizardproject.qe2016.helpers.ActionHelper;
 import pl.lizardproject.qe2016.helpers.ActivityHelper;
