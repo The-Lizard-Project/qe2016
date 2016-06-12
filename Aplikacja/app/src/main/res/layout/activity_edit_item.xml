@@ -25,7 +25,7 @@
                     android:id="@+id/newItemEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.newItemName}" />
+                    android:text="@={viewModel.newItemName}"/>
             </android.support.design.widget.TextInputLayout>
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                 android:paddingTop="@dimen/activity_padding"
                 android:text="@string/categoryTitle"
                 android:textColor="@color/colorAccent"
-                android:textSize="11sp" />
+                android:textSize="11sp"/>
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
