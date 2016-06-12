@@ -30,11 +30,11 @@ public class AddAndRemoveItemsTest {
     public void addItems() {
         AddItemPage addItemPage;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             addItemPage = itemListPage.goToAddItemPage();
             itemListPage = addItemPage.addItem("1");
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             itemListPage = itemListPage.removeNthItem(0);
         }
     }

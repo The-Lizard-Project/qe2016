@@ -22,11 +22,12 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 @SmallTest
 public class AddItemParamTest {
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters( name = "{index}: {0}" )
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"ziemniaki"},
                 {"buraki"},
+                {"crash"},
                 {"pieczarki"},
                 {"kasztany"},
         });
