@@ -15,26 +15,26 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class AddItemTest {
+public class AddAndRemoveItemsTest {
     private ItemListPage itemListPage;
 
     @Rule
     public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
 
     @Before
-    public void before(){
+    public void before() {
         itemListPage = new ItemListPage();
     }
 
     @Test
-    public void addItem() {
+    public void addItems() {
         AddItemPage addItemPage;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             addItemPage = itemListPage.goToAddItemPage();
             itemListPage = addItemPage.addItem("1");
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             itemListPage = itemListPage.removeNthItem(0);
         }
     }
