@@ -3,7 +3,6 @@ package pl.lizardproject.qe2016;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.util.Log;
 
 import org.junit.Before;
 import org.junit.Rule;
