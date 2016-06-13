@@ -22,7 +22,7 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 @SmallTest
 public class AddItemParamTest {
 
-    @Parameterized.Parameters( name = "{index}: {0}" )
+    @Parameterized.Parameters(name = "{index}: {0}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"ziemniaki"},
@@ -38,13 +38,14 @@ public class AddItemParamTest {
     public AddItemParamTest(String operand) {
         mOperand = operand;
     }
+
     private ItemListPage itemListPage;
 
     @Rule
     public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
 
     @Before
-    public void before(){
+    public void before() {
         itemListPage = new ItemListPage();
     }
 
@@ -52,8 +53,8 @@ public class AddItemParamTest {
     public void addItem() {
         AddItemPage addItemPage;
 
-            addItemPage = itemListPage.goToAddItemPage();
-            itemListPage = addItemPage.addItem(mOperand);
+        addItemPage = itemListPage.goToAddItemPage();
+        itemListPage = addItemPage.addItem(mOperand);
 
     }
 }

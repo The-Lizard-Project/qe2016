@@ -22,7 +22,7 @@ public class AddAndRemoveItemsTest {
     public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
 
     @Before
-    public void before(){
+    public void before() {
         itemListPage = new ItemListPage();
     }
 

@@ -21,16 +21,16 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
  */
 
 public class ItemListPage {
-    public ItemListPage(){
+    public ItemListPage() {
         Log.i("Activity: ", ActivityHelper.getActivityName());
     }
 
-    public AddItemPage goToAddItemPage(){
+    public AddItemPage goToAddItemPage() {
         ActionHelper.clickOnId(R.id.fabAdd);
         return new AddItemPage();
     }
 
-    public ItemListPage removeNthItem(int item){
+    public ItemListPage removeNthItem(int item) {
         onView(withId(R.id.recyclerViewList)).perform(RecyclerViewActions.actionOnItemAtPosition(item, new ClickDeleteButton()));
         return new ItemListPage();
     }

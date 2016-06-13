@@ -17,11 +17,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public class AddItemPage {
 
-    protected AddItemPage(){
+    protected AddItemPage() {
         Log.i("Activity: ", ActivityHelper.getActivityName());
     }
 
-    public ItemListPage addItem(String item){
+    public ItemListPage addItem(String item) {
         onView(withId(R.id.newItemEditText)).perform(typeText(item), closeSoftKeyboard());
         ActionHelper.clickOnId(R.id.fabSave);
         return new ItemListPage();

@@ -2,17 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
 
-    dependencies {
-        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.0'
-    }
-}
 apply plugin: 'spoon'
-
 spoon {
     // for debug output
     debug = true
