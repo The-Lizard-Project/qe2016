@@ -142,6 +142,6 @@ public class Exercise1 {
     }
 
     // TODO Task 5
-    // based on DRY pattern create methods that are common in TASKS 1 - 3 and then update use this methods inside them
+    // based on DRY pattern create methods that are common for TASKS 1 - 3 and then use this methods inside them
 
 }
