@@ -12,7 +12,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
  */
 
 public final class ActionHelper {
-    public static void clickOnId(int id){
+    public static void clickOnId(int id) {
         onView(withId(id)).check(matches(isDisplayed()));
         onView(withId(id)).check(matches(isClickable()));
         onView(withId(id)).perform(click());

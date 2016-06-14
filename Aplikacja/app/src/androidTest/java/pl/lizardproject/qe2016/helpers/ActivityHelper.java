@@ -15,12 +15,13 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 public class ActivityHelper {
 
     static Activity currentActivity;
+
     public static Activity getActivityInstance() {
         getInstrumentation().runOnMainSync(new Runnable() {
 
             public void run() {
                 Collection resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
-                if(resumedActivities.iterator().hasNext()) {
+                if (resumedActivities.iterator().hasNext()) {
                     currentActivity = (Activity) resumedActivities.iterator().next();
                 }
             }
@@ -28,7 +29,8 @@ public class ActivityHelper {
 
         return currentActivity;
     }
-    public static String getActivityName(){
+
+    public static String getActivityName() {
         return getActivityInstance().getClass().getCanonicalName();
     }
 }
