@@ -6,4 +6,5 @@
     <string name="nameHint">Name</string>
     <string name="categoryTitle">Category</string>
     <string name="priorityTitle">Priority</string>
+    <string name="snackbarText">Fill the name field!</string>
 </resources>
