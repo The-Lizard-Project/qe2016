@@ -1,15 +1,8 @@
 package pl.lizardproject.qe2016.database.converter
 
-import pl.lizardproject.qe2016.database.model.DbItemEntity
+import pl.lizardproject.qe2016.database.model.RealmItem
+import pl.lizardproject.qe2016.model.Category
 import pl.lizardproject.qe2016.model.Item
+import pl.lizardproject.qe2016.model.Priority
 
-fun DbItemEntity.toAppModel() = Item(id, name, category, priority, isChecked)
-
-fun Item.toDbModel(dbItem: DbItemEntity? = null): DbItemEntity {
-    val dbModel = dbItem ?: DbItemEntity()
-    dbModel.name = name
-    dbModel.category = category
-    dbModel.priority = priority
-    dbModel.isChecked = isChecked
-    return dbModel
-}
+fun RealmItem.toAppModel() = Item(id, name!!, Category.valueOf(category!!), Priority.valueOf(priority!!), isChecked!!)

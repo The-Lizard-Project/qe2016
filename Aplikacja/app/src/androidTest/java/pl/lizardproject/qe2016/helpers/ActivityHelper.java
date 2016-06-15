@@ -20,7 +20,8 @@ public class ActivityHelper {
         getInstrumentation().runOnMainSync(new Runnable() {
 
             public void run() {
-                Collection resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED);
+                Collection resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(
+                    Stage.RESUMED);
                 if (resumedActivities.iterator().hasNext()) {
                     currentActivity = (Activity) resumedActivities.iterator().next();
                 }
