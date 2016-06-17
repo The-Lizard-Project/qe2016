@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.0.2'
+    ext.realm_version = '1.0.0'
 
     repositories {
         jcenter()
@@ -8,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.realm:realm-gradle-plugin:$realm_version"
         classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.0'
     }
 }
