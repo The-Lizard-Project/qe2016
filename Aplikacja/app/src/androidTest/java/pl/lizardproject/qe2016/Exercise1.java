@@ -45,11 +45,11 @@ public class Exercise1 {
     public void openAddItemScreen() {
         //TODO 1,2
 
-        onView(withId(R.id.newItemEditText)).check(matches(isDisplayed())); // validation (leave)
+        onView(withId(R.id.fabSave)).check(matches(isDisplayed())); // validation (leave)
 
         //TODO 3
 
-        onView(withId(R.id.recyclerViewList)).check(matches(isDisplayed())); // validation (leave)
+        onView(withId(R.id.fabAdd)).check(matches(isDisplayed())); // validation (leave)
     }
 
     /* TODO TASK 2
