@@ -15,9 +15,6 @@ import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 import pl.lizardproject.qe2016.pages.AddItemPage;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
-/**
- * Created by PS on 2016-06-12.
- */
 @RunWith(Parameterized.class)
 @SmallTest
 public class AddItemParamTest {

@@ -8,10 +8,6 @@ import java.util.Collection;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
-/**
- * Created by PS on 2016-06-04.
- */
-
 public class ActivityHelper {
 
     static Activity currentActivity;

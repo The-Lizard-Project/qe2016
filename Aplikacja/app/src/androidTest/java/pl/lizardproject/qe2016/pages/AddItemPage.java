@@ -11,10 +11,6 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-/**
- * Created by PS on 2016-06-07.
- */
-
 public class AddItemPage {
 
     protected AddItemPage() {
