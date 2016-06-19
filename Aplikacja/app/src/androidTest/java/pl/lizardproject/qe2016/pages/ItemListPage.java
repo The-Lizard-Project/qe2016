@@ -44,7 +44,8 @@ public class ItemListPage {
     }
 
     public ItemListPage removeNthItem(int item) {
-        onView(withId(R.id.recyclerViewList)).perform(RecyclerViewActions.actionOnItemAtPosition(item, new ClickDeleteButton()));
+        onView(withId(R.id.recyclerViewList)).perform(
+            RecyclerViewActions.actionOnItemAtPosition(item, new ClickDeleteButton()));
         return new ItemListPage();
     }
 

@@ -14,11 +14,10 @@ import pl.lizardproject.qe2016.databinding.ActivityEditItemBinding;
 
 public class EditItemActivity extends AppCompatActivity {
 
-    private EditItemViewModel viewModel;
-
     @InjectExtra
     @Nullable
-    Integer itemId;
+    String itemId;
+    private EditItemViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
