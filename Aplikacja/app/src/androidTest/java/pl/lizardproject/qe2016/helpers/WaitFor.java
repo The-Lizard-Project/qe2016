@@ -23,11 +23,11 @@ public class WaitFor {
                 onView(withText(str)).check(matches(isDisplayed()));
                 continue;
             } catch (AssertionFailedError ignored) {
-                doLoop();
+                sleep();
             } catch (NoMatchingViewException ignored) {
-                doLoop();
+                sleep();
             } catch (Resources.NotFoundException ignored) {
-                doLoop();
+                sleep();
             }
         }
         onView(withText(str)).check(matches(isDisplayed()));
@@ -40,17 +40,17 @@ public class WaitFor {
                 onView(withId(id)).check(matches(isDisplayed()));
                 continue;
             } catch (AssertionFailedError ignored) {
-                doLoop();
+                sleep();
             } catch (NoMatchingViewException ignored) {
-                doLoop();
+                sleep();
             } catch (Resources.NotFoundException ignored) {
-                doLoop();
+                sleep();
             }
         }
         onView(withId(id)).check(matches(isDisplayed()));
     }
 
-    private static void doLoop() {
+    private static void sleep() {
         try {
             Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
