@@ -17,7 +17,7 @@ public class Exercise2 {
     Using knowledge and code from Task5 in Exercise1 create simple PageObject of following Activities:
     AddItemPage and ItemListPage
 
-    and using them implement 3 tests that are below:
+    and using them implement 3 (4th is optional) tests that are below:
     */
 
     @Test
