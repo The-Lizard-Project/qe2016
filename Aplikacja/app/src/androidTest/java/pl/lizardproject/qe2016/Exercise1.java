@@ -97,7 +97,7 @@ public class Exercise1 {
 
     */
     @Test
-    public void addIMoreThanOneItems() {
+    public void addMoreThanOneItem() {
 
         ItemListPage itemListPage = new ItemListPage();
         itemListPage.ClearWholeList();
@@ -138,7 +138,7 @@ public class Exercise1 {
 
     */
     @Test
-    public void addIMoreThanOneSameItems() {
+    public void addTheSameItemMoreThanOnce() {
 
     }
 

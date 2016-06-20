@@ -13,6 +13,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class WaitFor {
 
+    private WaitFor(){}
+
     private static int exceptionTries = 10;
     private static int sleepTime = 1000;
 

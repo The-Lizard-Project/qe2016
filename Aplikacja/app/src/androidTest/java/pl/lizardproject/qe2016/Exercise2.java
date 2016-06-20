@@ -31,12 +31,12 @@ public class Exercise2 {
     }
 
     @Test
-    public void addIMoreThanOneItems() {
+    public void addMoreThanOneItem() {
 
     }
 
     @Test
-    public void addIMoreThanOneSameItems() {
+    public void addTheSameItemMoreThanOnce() {
 
     }
 
