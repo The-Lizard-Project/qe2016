@@ -23,7 +23,7 @@ public class WaitFor {
         for (int i = 1; i < exceptionTries; i++) {
             try {
                 onView(withText(str)).check(matches(isDisplayed()));
-                continue;
+                break;
             } catch (AssertionFailedError ignored) {
                 sleep();
             } catch (NoMatchingViewException ignored) {
@@ -40,7 +40,7 @@ public class WaitFor {
         for (int i = 1; i < exceptionTries; i++) {
             try {
                 onView(withId(id)).check(matches(isDisplayed()));
-                continue;
+                break;
             } catch (AssertionFailedError ignored) {
                 sleep();
             } catch (NoMatchingViewException ignored) {
