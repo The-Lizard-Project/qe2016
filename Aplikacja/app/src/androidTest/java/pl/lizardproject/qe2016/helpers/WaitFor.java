@@ -11,43 +11,39 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-/**
- * Created by PS on 2016-06-19.
- */
-
 public class WaitFor {
 
-    private static int exceptionTries = 1000;
-    private static int waitTries = 1000;
+    private static int exceptionTries = 10;
+    private static int sleepTime = 1000;
 
-    public static void Text(String str) {
+    public static void text(String str) {
 
         for (int i = 1; i < exceptionTries; i++) {
             try {
                 onView(withText(str)).check(matches(isDisplayed()));
                 continue;
-            } catch (AssertionFailedError pEx) {
+            } catch (AssertionFailedError ignored) {
                 doLoop();
-            } catch (NoMatchingViewException nmWEx) {
+            } catch (NoMatchingViewException ignored) {
                 doLoop();
-            } catch (Resources.NotFoundException nfEx) {
+            } catch (Resources.NotFoundException ignored) {
                 doLoop();
             }
         }
         onView(withText(str)).check(matches(isDisplayed()));
     }
 
-    public static void Id(int id) {
+    public static void id(int id) {
 
         for (int i = 1; i < exceptionTries; i++) {
             try {
                 onView(withId(id)).check(matches(isDisplayed()));
                 continue;
-            } catch (AssertionFailedError pEx) {
+            } catch (AssertionFailedError ignored) {
                 doLoop();
-            } catch (NoMatchingViewException nmWEx) {
+            } catch (NoMatchingViewException ignored) {
                 doLoop();
-            } catch (Resources.NotFoundException nfEx) {
+            } catch (Resources.NotFoundException ignored) {
                 doLoop();
             }
         }
@@ -55,8 +51,10 @@ public class WaitFor {
     }
 
     private static void doLoop() {
-        for (int j = 0; j < waitTries; ) {
-            j = j + 1;
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
