@@ -1,25 +1,27 @@
 package pl.lizardproject.qe2016.itemlist
 
-import android.app.Activity
-import android.content.Intent
 import android.databinding.ObservableArrayList
+import android.util.Log
 import android.view.View
-import pl.lizardproject.database.qe2016.DatabaseFacade
-import pl.lizardproject.qe2016.edititem.EditItemActivity
+import pl.lizardproject.qe2016.database.DatabaseFacade
+import pl.lizardproject.qe2016.edititem.Henson
 import pl.lizardproject.qe2016.model.Item
 
-class ItemListViewModel(private val activity: Activity, private val databaseFacade: DatabaseFacade) {
-
-    private var subscription = databaseFacade.loadItems().subscribe {
-        values ->
-        items.clear()
-        items.addAll(values)
-    }
+class ItemListViewModel(private val databaseFacade: DatabaseFacade) {
 
     val items = ObservableArrayList<Item>()
 
+    private var subscription = databaseFacade.loadItems()
+            .subscribe ({ values ->
+                items.clear()
+                items.addAll(values)
+            }, { ex -> Log.e("TAG", ex.message, ex) })
+
     fun addItemCommand(view: View) {
-        activity.startActivity(Intent(activity, EditItemActivity::class.java))
+        view.context.startActivity(
+                Henson.with(view.context)
+                        .gotoEditItemActivity()
+                        .build())
     }
 
     fun dispose() {

@@ -1,4 +1,4 @@
-package pl.lizardproject.database.qe2016
+package pl.lizardproject.qe2016.database
 
 import android.content.Context
 import io.requery.Persistable
@@ -12,14 +12,20 @@ import pl.lizardproject.qe2016.database.converter.toDbModel
 import pl.lizardproject.qe2016.database.model.DbItemEntity
 import pl.lizardproject.qe2016.database.model.Models
 import pl.lizardproject.qe2016.model.Item
+import rx.Single
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.util.concurrent.Executors
 
 class DatabaseFacade(private val context: Context) {
+
+    private val scheduler = Schedulers.from(Executors.newSingleThreadExecutor())
 
     val storage by lazy {
         // override onUpgrade to handle migrating to a new version
         val source = SqlitexDatabaseSource(context, Models.DEFAULT, 1)
+        source.setLoggingEnabled(true)
+
         if (BuildConfig.DEBUG) {
             // use this in development mode to drop and recreate the tables on every upgrade
             source.setTableCreationMode(TableCreationMode.DROP_CREATE)
@@ -30,36 +36,42 @@ class DatabaseFacade(private val context: Context) {
 
     fun saveItem(item: Item) {
         storage.findByKey(DbItemEntity::class.java, item.id)
-                .subscribeOn(Schedulers.io())
-                .subscribe { dbItem ->
+                .subscribeOn(scheduler)
+                .flatMap { dbItem ->
                     if (dbItem != null) {
                         storage.update(item.toDbModel(dbItem))
-                                .subscribe { }
                     } else {
                         storage.insert(item.toDbModel())
-                                .subscribe { }
                     }
                 }
+                .subscribe { }
     }
 
     fun loadItems() = storage.select(DbItemEntity::class.java)
-            .orderBy(DbItemEntity.IS_CHECKED.asc())
+            .orderBy(DbItemEntity.CHECKED.asc())
             .get()
             .toSelfObservable()
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(scheduler)
             .map { it.map { it.toAppModel() } }
             .observeOn(AndroidSchedulers.mainThread())
 
     fun deleteItem(item: Item) {
         storage.findByKey(DbItemEntity::class.java, item.id)
-                .subscribeOn(Schedulers.io())
-                .subscribe { dbItem ->
+                .subscribeOn(scheduler)
+                .flatMap { dbItem ->
                     if (dbItem != null) {
                         storage.delete(item.toDbModel(dbItem))
-                                .subscribe { }
+                    } else {
+                        Single.just(dbItem)
                     }
                 }
+                .subscribe { }
     }
 
-    fun loadItem(itemId: Int?) = loadItems().map { it.first { it.id == itemId } }
+    fun loadItem(itemId: Int?) = storage.select(DbItemEntity::class.java)
+            .get()
+            .toSelfObservable()
+            .subscribeOn(scheduler)
+            .map { it.first { it.id == itemId } }
+            .map { it.toAppModel() }
 }
