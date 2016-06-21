@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import pl.lizardproject.qe2016.helpers.WaitFor;
 import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
@@ -45,11 +46,11 @@ public class Exercise1 {
     public void openAddItemScreen() {
         //TODO 1,2
 
-        onView(withId(R.id.newItemEditText)).check(matches(isDisplayed())); // validation (leave)
+        onView(withId(R.id.fabSave)).check(matches(isDisplayed())); // validation (leave)
 
         //TODO 3
 
-        onView(withId(R.id.recyclerViewList)).check(matches(isDisplayed())); // validation (leave)
+        onView(withId(R.id.fabAdd)).check(matches(isDisplayed())); // validation (leave)
     }
 
     /* TODO TASK 2
@@ -96,7 +97,7 @@ public class Exercise1 {
 
     */
     @Test
-    public void addIMoreThanOneItems() {
+    public void addMoreThanOneItem() {
 
         ItemListPage itemListPage = new ItemListPage();
         itemListPage.ClearWholeList();
@@ -137,7 +138,7 @@ public class Exercise1 {
 
     */
     @Test
-    public void addIMoreThanOneSameItems() {
+    public void addTheSameItemMoreThanOnce() {
 
     }
 
