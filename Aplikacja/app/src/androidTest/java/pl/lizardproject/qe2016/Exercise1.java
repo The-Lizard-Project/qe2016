@@ -8,7 +8,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import pl.lizardproject.qe2016.helpers.WaitFor;
 import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
@@ -21,7 +20,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
-import static org.hamcrest.core.AnyOf.anyOf;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -144,5 +142,4 @@ public class Exercise1 {
 
     // TODO Task 5
     // based on DRY pattern create methods that are common for TASKS 1 - 3 and then use this methods inside them
-
 }
