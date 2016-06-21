@@ -16,9 +16,10 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class AddAndRemoveItemsTest {
+    private ItemListPage itemListPage;
+
     @Rule
     public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
-    private ItemListPage itemListPage;
 
     @Before
     public void before() {

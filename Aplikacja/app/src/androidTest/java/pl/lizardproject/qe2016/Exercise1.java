@@ -20,14 +20,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.core.AnyOf.anyOf;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class Exercise1 {
 
     @Rule
-    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>
-            (ItemListActivity.class);
+    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>(ItemListActivity.class);
 
     /* TODO TASK 1
      Using: onView(), withId(), perform(), click()

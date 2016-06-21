@@ -19,15 +19,6 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 @SmallTest
 public class AddItemParamTest {
 
-    private final String mOperand;
-    @Rule
-    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
-    private ItemListPage itemListPage;
-
-    public AddItemParamTest(String operand) {
-        mOperand = operand;
-    }
-
     @Parameterized.Parameters(name = "{index}: {0}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
@@ -38,6 +29,17 @@ public class AddItemParamTest {
                 {"kasztany"},
         });
     }
+
+    private final String mOperand;
+
+    public AddItemParamTest(String operand) {
+        mOperand = operand;
+    }
+
+    private ItemListPage itemListPage;
+
+    @Rule
+    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
 
     @Before
     public void before() {

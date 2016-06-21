@@ -20,7 +20,7 @@ class ItemRecyclerViewAdapter(private val list: ObservableArrayList<Item>, priva
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = BindingViewHolder(layoutInflater.inflate(R.layout.item_item_list, parent, false))
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-        holder.binder.viewModel = ItemViewModel(list[position], databaseFacade)
+        holder.binder.viewModel = ItemViewModel(list[position], context, databaseFacade)
         holder.binder.executePendingBindings()
     }
 

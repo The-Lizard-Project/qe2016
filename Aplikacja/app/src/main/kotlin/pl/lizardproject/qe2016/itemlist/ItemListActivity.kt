@@ -9,16 +9,15 @@ import pl.lizardproject.qe2016.databinding.ActivityItemListBinding
 
 class ItemListActivity : AppCompatActivity() {
 
-    private var viewModel: ItemListViewModel? = null
+    private val viewModel by lazy { ItemListViewModel(this, (application as MyApplication).databaseFacade) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ItemListViewModel((application as MyApplication).databaseFacade)
         DataBindingUtil.setContentView<ActivityItemListBinding>(this, R.layout.activity_item_list).viewModel = viewModel
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel!!.dispose()
+        viewModel.dispose()
     }
 }

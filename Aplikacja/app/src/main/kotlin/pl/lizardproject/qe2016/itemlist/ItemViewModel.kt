@@ -1,5 +1,6 @@
 package pl.lizardproject.qe2016.itemlist
 
+import android.content.Context
 import android.databinding.ObservableField
 import android.view.View
 import android.widget.CompoundButton
@@ -8,25 +9,26 @@ import pl.lizardproject.qe2016.edititem.Henson
 import pl.lizardproject.qe2016.model.Item
 
 
-class ItemViewModel(item: Item, private val databaseFacade: DatabaseFacade) {
+class ItemViewModel(item: Item, private val context: Context, private val databaseFacade: DatabaseFacade) {
 
     val item = ObservableField(item)
 
-    fun onCheckChangedCommand(ignored: CompoundButton, isChecked: Boolean) {
+    fun onCheckChangedCommand(view: CompoundButton, isChecked: Boolean) {
         if (item.get().isChecked != isChecked) {
             databaseFacade.saveItem(item.get().checkItem(isChecked))
         }
     }
 
-    fun onDeleteClickCommand(ignored: View) {
-        databaseFacade.deleteItem(item.get().id)
+    fun onDeleteClickCommand(view: View) {
+        databaseFacade.deleteItem(item.get())
     }
 
     fun onClickCommand(view: View) {
-        view.context.startActivity(Henson.with(view.context)
+        val intent = Henson.with(context)
                 .gotoEditItemActivity()
                 .itemId(item.get().id!!)
                 .build()
-        )
+
+        context.startActivity(intent)
     }
 }

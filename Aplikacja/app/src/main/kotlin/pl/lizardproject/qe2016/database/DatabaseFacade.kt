@@ -1,77 +1,65 @@
 package pl.lizardproject.database.qe2016
 
 import android.content.Context
-import android.text.TextUtils
-import io.realm.Realm
-import io.realm.RealmConfiguration
+import io.requery.Persistable
+import io.requery.android.sqlitex.SqlitexDatabaseSource
+import io.requery.rx.RxSupport
+import io.requery.sql.EntityDataStore
+import io.requery.sql.TableCreationMode
+import pl.lizardproject.qe2016.BuildConfig
 import pl.lizardproject.qe2016.database.converter.toAppModel
-import pl.lizardproject.qe2016.database.model.RealmItem
+import pl.lizardproject.qe2016.database.converter.toDbModel
+import pl.lizardproject.qe2016.database.model.DbItemEntity
+import pl.lizardproject.qe2016.database.model.Models
 import pl.lizardproject.qe2016.model.Item
-import rx.Observable
-import java.util.*
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class DatabaseFacade(private val context: Context) {
 
-    val realm by lazy {
-        val realmConfig: RealmConfiguration = RealmConfiguration.Builder(context).build()
-        Realm.setDefaultConfiguration(realmConfig)
-        Realm.getDefaultInstance()
+    val storage by lazy {
+        // override onUpgrade to handle migrating to a new version
+        val source = SqlitexDatabaseSource(context, Models.DEFAULT, 1)
+        if (BuildConfig.DEBUG) {
+            // use this in development mode to drop and recreate the tables on every upgrade
+            source.setTableCreationMode(TableCreationMode.DROP_CREATE)
+        }
+
+        RxSupport.toReactiveStore(EntityDataStore<Persistable>(source.configuration))
     }
 
     fun saveItem(item: Item) {
-        realm.beginTransaction()
-        try {
-            val realmItem = getRealmItem(item)
-            if (realmItem == null) {
-                realm.cancelTransaction()
-                return
-            }
-            realmItem.category = item.category.toString()
-            realmItem.priority = item.priority.toString()
-            realmItem.id = UUID.randomUUID().toString()
-            realmItem.isChecked = item.isChecked
-            realmItem.name = item.name
-            realm.commitTransaction()
-        } catch (e: Exception) {
-            realm.cancelTransaction()
-        }
-    }
-
-    private fun getRealmItem(item: Item): RealmItem? {
-        return if (TextUtils.isEmpty(item.id)) realm.createObject(RealmItem::class.java) else realm
-                .where(RealmItem::class.java)
-                .equalTo("id", item.id)
-                .findFirst()
-    }
-
-    fun loadItems() = Observable.defer {
-        realm.where(RealmItem::class.java)
-                .findAll()
-                .asObservable()
-                .flatMap {
-                    Observable.from(it.toTypedArray())
-                            .map { it -> it.toAppModel() }
-                            .toList()
+        storage.findByKey(DbItemEntity::class.java, item.id)
+                .subscribeOn(Schedulers.io())
+                .subscribe { dbItem ->
+                    if (dbItem != null) {
+                        storage.update(item.toDbModel(dbItem))
+                                .subscribe { }
+                    } else {
+                        storage.insert(item.toDbModel())
+                                .subscribe { }
+                    }
                 }
     }
 
-    fun deleteItem(itemId: String) {
-        try {
-            realm.beginTransaction()
-            realm.where(RealmItem::class.java)
-                    .equalTo("id", itemId)
-                    .findFirst()
-                    .deleteFromRealm()
-            realm.commitTransaction()
-        } catch (ex: Exception) {
-            realm.cancelTransaction()
-        }
+    fun loadItems() = storage.select(DbItemEntity::class.java)
+            .orderBy(DbItemEntity.IS_CHECKED.asc())
+            .get()
+            .toSelfObservable()
+            .subscribeOn(Schedulers.io())
+            .map { it.map { it.toAppModel() } }
+            .observeOn(AndroidSchedulers.mainThread())
+
+    fun deleteItem(item: Item) {
+        storage.findByKey(DbItemEntity::class.java, item.id)
+                .subscribeOn(Schedulers.io())
+                .subscribe { dbItem ->
+                    if (dbItem != null) {
+                        storage.delete(item.toDbModel(dbItem))
+                                .subscribe { }
+                    }
+                }
     }
 
-    fun loadItem(itemId: String) = Observable.defer {
-        Observable.just(realm.where(RealmItem::class.java)
-                .equalTo("id", itemId)
-                .findFirst())
-                .map { it -> it.toAppModel() }
-    }
+    fun loadItem(itemId: Int?) = loadItems().map { it.first { it.id == itemId } }
 }
