@@ -10,9 +10,9 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
 public class ActivityHelper {
 
-    static Activity currentActivity;
+    private static Activity currentActivity;
 
-    public static Activity getActivityInstance() {
+    private static Activity getActivityInstance() {
         getInstrumentation().runOnMainSync(new Runnable() {
 
             public void run() {

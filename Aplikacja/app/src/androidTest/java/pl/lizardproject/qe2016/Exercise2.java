@@ -10,8 +10,7 @@ import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 public class Exercise2 {
 
     @Rule
-    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>
-            (ItemListActivity.class);
+    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>(ItemListActivity.class);
 
     /* TODO Task1
     Using knowledge and code from Task5 in Exercise1 create simple PageObject of following Activities:
@@ -56,5 +55,4 @@ public class Exercise2 {
     3. Edit item
     4. Validate if item's data has been changed
     */
-
 }
