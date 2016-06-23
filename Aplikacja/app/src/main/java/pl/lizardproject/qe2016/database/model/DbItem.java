@@ -13,7 +13,7 @@ class DbItem {
     int id;
 
     String name;
-    Boolean isChecked;
+    Boolean checked;
     Category category;
     Priority priority;
 }

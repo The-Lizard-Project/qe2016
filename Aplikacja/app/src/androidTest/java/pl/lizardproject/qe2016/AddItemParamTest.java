@@ -1,7 +1,7 @@
 package pl.lizardproject.qe2016;
 
+import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
-import android.test.suitebuilder.annotation.SmallTest;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -20,9 +20,11 @@ import pl.lizardproject.qe2016.pages.ItemListPage;
 public class AddItemParamTest {
 
     private final String mOperand;
-    @Rule
-    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<ItemListActivity>(ItemListActivity.class);
+
     private ItemListPage itemListPage;
+
+    @Rule
+    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>(ItemListActivity.class);
 
     public AddItemParamTest(String operand) {
         mOperand = operand;
@@ -50,6 +52,5 @@ public class AddItemParamTest {
 
         addItemPage = itemListPage.goToAddItemPage();
         itemListPage = addItemPage.addItem(mOperand);
-
     }
 }

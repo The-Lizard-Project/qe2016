@@ -3,10 +3,9 @@ package pl.lizardproject.qe2016.itemlist
 import android.databinding.ObservableField
 import android.view.View
 import android.widget.CompoundButton
-import pl.lizardproject.database.qe2016.DatabaseFacade
+import pl.lizardproject.qe2016.database.DatabaseFacade
 import pl.lizardproject.qe2016.edititem.Henson
 import pl.lizardproject.qe2016.model.Item
-
 
 class ItemViewModel(item: Item, private val databaseFacade: DatabaseFacade) {
 
@@ -19,14 +18,13 @@ class ItemViewModel(item: Item, private val databaseFacade: DatabaseFacade) {
     }
 
     fun onDeleteClickCommand(ignored: View) {
-        databaseFacade.deleteItem(item.get().id)
+        databaseFacade.deleteItem(item.get())
     }
 
     fun onClickCommand(view: View) {
         view.context.startActivity(Henson.with(view.context)
                 .gotoEditItemActivity()
                 .itemId(item.get().id!!)
-                .build()
-        )
+                .build())
     }
 }

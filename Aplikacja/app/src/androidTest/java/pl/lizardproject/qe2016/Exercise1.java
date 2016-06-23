@@ -8,7 +8,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import pl.lizardproject.qe2016.helpers.WaitFor;
 import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
@@ -27,8 +26,7 @@ import static org.hamcrest.core.AllOf.allOf;
 public class Exercise1 {
 
     @Rule
-    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>
-            (ItemListActivity.class);
+    public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>(ItemListActivity.class);
 
     /* TODO TASK 1
      Using: onView(), withId(), perform(), click()
@@ -144,5 +142,4 @@ public class Exercise1 {
 
     // TODO Task 5
     // based on DRY pattern create methods that are common for TASKS 1 - 3 and then use this methods inside them
-
 }
