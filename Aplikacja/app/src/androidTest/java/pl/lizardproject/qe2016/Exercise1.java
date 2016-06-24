@@ -45,7 +45,7 @@ public class Exercise1 {
     @Test
     public void openAddItemScreen() {
         //TODO 1,2
-        onView(withId(R.id.fabAdd));
+        onView(withId(R.id.fabAdd)).perform(click());
         onView(withId(R.id.fabSave)).check(matches(isDisplayed())); // validation (leave)
 
         //TODO 3
