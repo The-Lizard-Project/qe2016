@@ -31,11 +31,11 @@ public class ItemListPage {
         return new AddItemPage();
     }
 
-    public int ClearWholeList() {
+    public int clearList() {
         int i = 0;
         while (true) {
             try {
-                removeNthItem(0);
+                removeItem(0);
             } catch (Exception e) {
                 break;
             }
@@ -44,8 +44,8 @@ public class ItemListPage {
         return i;
     }
 
-    public ItemListPage removeNthItem(int item) {
-        onView(withId(R.id.recyclerViewList)).perform(RecyclerViewActions.actionOnItemAtPosition(item, new ClickDeleteButton()));
+    public ItemListPage removeItem(int position) {
+        onView(withId(R.id.recyclerViewList)).perform(RecyclerViewActions.actionOnItemAtPosition(position, new ClickDeleteButton()));
         return new ItemListPage();
     }
 
