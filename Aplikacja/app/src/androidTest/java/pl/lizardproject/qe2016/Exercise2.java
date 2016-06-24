@@ -63,6 +63,7 @@ public class Exercise2 {
     public void addTheSameItemNameMoreThanOnce() {
         AddItemPage addItemPage;
         addItemPage = itemListPage.goToAddItemPage();
+        itemListPage = addItemPage.addItem("gruszki", null, Priority.CRITICAL.toString().toLowerCase());
 
         addItemPage = itemListPage.goToAddItemPage();
         itemListPage = addItemPage.addItem("gruszki", Category.VEGETABLES.toString().toLowerCase(), null);
