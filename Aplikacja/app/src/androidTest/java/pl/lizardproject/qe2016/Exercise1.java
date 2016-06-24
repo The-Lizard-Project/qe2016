@@ -130,7 +130,7 @@ public class Exercise1 {
     /* TODO TASK 4 for volunteers
      * Using chosen methods from previous tasks and Google :)
      *
-     * Add more than one item wit the same name but with different type or priority, then verify
+     * Add more than one item with the same name but with different type or priority, then verify
      *
      */
     @Test
