@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.allOf;
 @SmallTest
 public class AddItemParamTest {
 
-    private final String mOperand;
+    private final String operand;
 
     private ItemListPage itemListPage;
 
@@ -32,7 +32,7 @@ public class AddItemParamTest {
     public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>(ItemListActivity.class);
 
     public AddItemParamTest(String operand) {
-        mOperand = operand;
+        this.operand = operand;
     }
 
     @Parameterized.Parameters(name = "{index}: {0}")
@@ -56,7 +56,7 @@ public class AddItemParamTest {
         AddItemPage addItemPage;
 
         addItemPage = itemListPage.goToAddItemPage();
-        itemListPage = addItemPage.addItem(mOperand);
-        onView(allOf(hasSibling(withText(mOperand)), withId(R.id.deleteButton))).perform(click());
+        itemListPage = addItemPage.addItem(operand);
+        onView(allOf(hasSibling(withText(operand)), withId(R.id.deleteButton))).perform(click());
     }
 }

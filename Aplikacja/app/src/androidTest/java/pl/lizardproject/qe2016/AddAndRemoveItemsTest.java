@@ -35,7 +35,7 @@ public class AddAndRemoveItemsTest {
             itemListPage = addItemPage.addItem("1");
         }
         for (int i = 0; i < 5; i++) {
-            itemListPage = itemListPage.removeNthItem(0);
+            itemListPage = itemListPage.removeItem(0);
         }
     }
 }
