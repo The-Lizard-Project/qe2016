@@ -7,22 +7,11 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import pl.lizardproject.qe2016.itemlist.ItemListActivity;
-import pl.lizardproject.qe2016.model.Category;
-import pl.lizardproject.qe2016.model.Priority;
-import pl.lizardproject.qe2016.pages.AddItemPage;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
 public class Exercise2 {
     @Rule
     public ActivityTestRule<ItemListActivity> itemListActivityActivityTestRule = new ActivityTestRule<>(ItemListActivity.class);
-
-    private ItemListPage itemListPage;
-
-    @Before
-    public void prepareActivity() {
-        itemListPage = new ItemListPage();
-        itemListPage.clearList();
-    }
 
     /* TODO Task1
      * Use knowledge gained in previous exercise and code from the last task(Exercise 1, task 5)
@@ -32,40 +21,22 @@ public class Exercise2 {
     */
     @Test
     public void openAddItemScreen() {
-        AddItemPage addItemPage;
-        addItemPage = itemListPage.goToAddItemPage();
-        addItemPage.assertPageIsOpened();
+        //TODO: Fill this
     }
 
     @Test
     public void addItem() {
-        AddItemPage addItemPage;
-        addItemPage = itemListPage.goToAddItemPage();
-        itemListPage = addItemPage.addItem("gruszki");
-        itemListPage.assertItemExists("gruszki");
+        //TODO: Fill this
     }
 
     @Test
     public void addMoreThanOneItem() {
-        AddItemPage addItemPage;
-        addItemPage = itemListPage.goToAddItemPage();
-        itemListPage = addItemPage.addItem("gruszki");
-
-        addItemPage = itemListPage.goToAddItemPage();
-        itemListPage = addItemPage.addItem("sliwki");
-
-        itemListPage.assertItemExists("gruszki");
-        itemListPage.assertItemExists("sliwki");
+        //TODO: Fill this
     }
 
     @Test
     public void addTheSameItemNameMoreThanOnce() {
-        AddItemPage addItemPage;
-        addItemPage = itemListPage.goToAddItemPage();
-        itemListPage = addItemPage.addItem("gruszki", null, Priority.CRITICAL.toString().toLowerCase());
-
-        addItemPage = itemListPage.goToAddItemPage();
-        itemListPage = addItemPage.addItem("gruszki", Category.VEGETABLES.toString().toLowerCase(), null);
+        //TODO: Fill this
     }
 
     /* TODO Task2
@@ -75,7 +46,7 @@ public class Exercise2 {
 
     @Test
     public void addAndRemoveItem() {
-
+        //TODO: Fill this
     }
 
     /* TODO Task3

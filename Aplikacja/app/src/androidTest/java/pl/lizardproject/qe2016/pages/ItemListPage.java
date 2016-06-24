@@ -26,52 +26,6 @@ public class ItemListPage {
         Log.i("Activity: ", ActivityHelper.getActivityName());
     }
 
-    public AddItemPage goToAddItemPage() {
-        ActionHelper.clickOnId(R.id.fabAdd);
-        return new AddItemPage();
-    }
-
-    public int clearList() {
-        int i = 0;
-        while (true) {
-            try {
-                removeItem(0);
-            } catch (Exception e) {
-                break;
-            }
-            i++;
-        }
-        return i;
-    }
-
-    public ItemListPage removeItem(int position) {
-        onView(withId(R.id.recyclerViewList)).perform(RecyclerViewActions.actionOnItemAtPosition(position, new ClickDeleteButton()));
-        return new ItemListPage();
-    }
-
-    public void assertPageIsOpened() {
-        onView(withId(R.id.fabAdd)).check(matches(isDisplayed()));
-    }
-
-    public void assertItemExists(String name, String category, String priority) {
-        if (category == null) {
-            category = "Category: fruits";
-        } else {
-            category = "Category:" + category;
-        }
-
-        if (priority == null) {
-            priority = "Priority: normal";
-        } else {
-            priority = "Priority:" + priority;
-        }
-        onView(allOf(withId(R.id.text), withText(name), hasSibling(withText(priority)), hasSibling(withText(category)))).check(matches(isDisplayed()));
-    }
-
-    public void assertItemExists(String name) {
-        onView(allOf(withId(R.id.text), withText(name))).check(matches(isDisplayed()));
-    }
-
     private class ClickDeleteButton implements ViewAction {
         ViewAction click = click();
 
