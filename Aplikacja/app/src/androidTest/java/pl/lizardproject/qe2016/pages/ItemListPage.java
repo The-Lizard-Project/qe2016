@@ -14,7 +14,12 @@ import pl.lizardproject.qe2016.helpers.ActivityHelper;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.AllOf.allOf;
 
 public class ItemListPage {
     public ItemListPage() {
@@ -42,6 +47,29 @@ public class ItemListPage {
     public ItemListPage removeNthItem(int item) {
         onView(withId(R.id.recyclerViewList)).perform(RecyclerViewActions.actionOnItemAtPosition(item, new ClickDeleteButton()));
         return new ItemListPage();
+    }
+
+    public void assertPageIsOpened() {
+        onView(withId(R.id.fabAdd)).check(matches(isDisplayed()));
+    }
+
+    public void assertItemExists(String name, String category, String priority) {
+        if (category == null) {
+            category = "Category: fruits";
+        } else {
+            category = "Category:" + category;
+        }
+
+        if (priority == null) {
+            priority = "Priority: normal";
+        } else {
+            priority = "Priority:" + priority;
+        }
+        onView(allOf(withId(R.id.text), withText(name), hasSibling(withText(priority)), hasSibling(withText(category)))).check(matches(isDisplayed()));
+    }
+
+    public void assertItemExists(String name) {
+        onView(allOf(withId(R.id.text), withText(name))).check(matches(isDisplayed()));
     }
 
     private class ClickDeleteButton implements ViewAction {
