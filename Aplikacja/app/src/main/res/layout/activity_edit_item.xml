@@ -34,7 +34,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="11sp"/>
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/category_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@{viewModel.categories}"
@@ -48,6 +48,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="11sp"/>
             <Spinner
+                android:id="@+id/priority_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@{viewModel.priorities}"

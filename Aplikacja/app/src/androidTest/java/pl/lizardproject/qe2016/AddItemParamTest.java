@@ -15,6 +15,11 @@ import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 import pl.lizardproject.qe2016.pages.AddItemPage;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.*;
+import static org.hamcrest.Matchers.allOf;
+
 @RunWith(Parameterized.class)
 @SmallTest
 public class AddItemParamTest {
@@ -52,5 +57,6 @@ public class AddItemParamTest {
 
         addItemPage = itemListPage.goToAddItemPage();
         itemListPage = addItemPage.addItem(mOperand);
+        onView(allOf(hasSibling(withText(mOperand)), withId(R.id.deleteButton))).perform(click());
     }
 }

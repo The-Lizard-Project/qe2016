@@ -12,10 +12,12 @@ import pl.lizardproject.qe2016.itemlist.ItemListActivity;
 import pl.lizardproject.qe2016.pages.ItemListPage;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasSibling;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -43,11 +45,12 @@ public class Exercise1 {
     @Test
     public void openAddItemScreen() {
         //TODO 1,2
-
+        onView(withId(R.id.fabAdd));
         onView(withId(R.id.fabSave)).check(matches(isDisplayed())); // validation (leave)
 
         //TODO 3
-
+        pressBack(); // hide keyboard
+        pressBack();
         onView(withId(R.id.fabAdd)).check(matches(isDisplayed())); // validation (leave)
     }
 
@@ -136,8 +139,23 @@ public class Exercise1 {
 
     */
     @Test
-    public void addTheSameItemMoreThanOnce() {
+    public void addTheSameItemNameMoreThanOnce() {
+        //first item
+        onView(withId(R.id.fabAdd)).perform(click());
+        onView(withId(R.id.newItemEditText)).perform(typeText("buraki"), closeSoftKeyboard());
+        onView(withId(R.id.category_spinner)).perform(click());
+        onView(withText("other")).perform(click());
+        onView(withId(R.id.fabSave)).perform(click());
 
+        //second one
+        onView(withId(R.id.fabAdd)).perform(click());
+        onView(withId(R.id.newItemEditText)).perform(typeText("buraki"), closeSoftKeyboard());
+        onView(withId(R.id.priority_spinner)).perform(click());
+        onView(withText("critical")).perform(click());
+        onView(withId(R.id.fabSave)).perform(click());
+
+        onView(allOf(withId(R.id.text), withText("buraki"), hasSibling(withText("Category: other")))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.text), withText("buraki"), hasSibling(withText("Priority: critical")))).check(matches(isDisplayed()));
     }
 
     // TODO Task 5
