@@ -1,0 +1,50 @@
+query("*")
+start_test_server_in_background
+query("*")
+quit
+start_test_server_in_background
+query("press image")
+query("press imageView")
+query("press button")
+query("ImageView")
+query("imageView")
+query("image")
+query("*")
+touch Imageview\
+quit
+start_test_server_in_background
+query("press imageView")
+query("press imageView number 1")
+touch Imageview
+touch(imageView)
+touch("imageView")
+touch("AppCompatImageView")
+quit
+start_test_server_in_background
+query(
+query(
+query(
+query("*")
+quit
+query("*")
+quit
+quit
+quit
+quit
+start_test_server_in_background
+query("*")
+quit
+start_test_server_in_background
+element_exists("TextView:'QE2016'")
+element_exists(tTextView:'QE2016'")
+element_exists(textView:'QE2016'")
+element_exist(textView:'QE2016'")
+element_exist(textView:'QE2016'")
+element_exists("*:'QE2016'")
+quit
+reinstall_apps
+start_test_server_in_background
+query("view")
+query("View")
+element_exists("textView")
+quit
