@@ -26,7 +26,7 @@ class ItemRecyclerViewAdapter(private val list: ObservableArrayList<Item>, conte
 
     override fun getItemCount() = list.count()
 
-    class BindingViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        var binder: ItemItemListBinding = DataBindingUtil.bind(view)
+    class BindingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binder: ItemItemListBinding = DataBindingUtil.bind(view)
     }
 }
